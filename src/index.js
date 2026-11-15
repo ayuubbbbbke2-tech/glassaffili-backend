@@ -130,9 +130,14 @@ export default {
     }
 
     if (env.ASSETS) {
-      return env.ASSETS.fetch(request);
-    }
-
-    return json({ error: "Halaman tidak ditemukan" }, 404);
+  if (url.pathname === "/" || url.pathname === "/index.html") {
+    return env.ASSETS.fetch(new Request(
+      new URL("/index.html", request.url),
+      request
+    ));
   }
-};
+
+  return env.ASSETS.fetch(request);
+}
+
+return json({ error: "Halaman tidak ditemukan" }, 404);
