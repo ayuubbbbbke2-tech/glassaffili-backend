@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GlassAffili AI</title>
+<style>
+:root{--bg:#071018;--glass:rgba(255,255,255,.075);--line:rgba(255,255,255,.13);--text:#f7fbff;--muted:#91a2b2;--accent:#8ee7ff;--accent2:#b99cff;--ok:#8ff0c2}
+*{box-sizing:border-box}body{margin:0;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 15% 10%,#193b55 0,transparent 32%),radial-gradient(circle at 85% 20%,#342153 0,transparent 30%),linear-gradient(145deg,#050b11,#0b141d 55%,#070b11);min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.04),transparent 30%,rgba(255,255,255,.025) 70%,transparent)}
+.container{width:min(1120px,92%);margin:auto;padding:28px 0 70px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:30px}.brand{display:flex;align-items:center;gap:12px}.orb{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#b9f6ff,#9e8cff);box-shadow:0 0 40px rgba(142,231,255,.3)}.brand b{font-size:20px}.brand span{display:block;color:var(--muted);font-size:12px;margin-top:2px}.pill{padding:9px 13px;border:1px solid var(--line);background:var(--glass);border-radius:999px;color:#c8d5df;font-size:12px}
+.hero{text-align:center;margin:28px auto 34px;max-width:780px}.hero h1{font-size:clamp(32px,7vw,66px);line-height:.98;margin:0;letter-spacing:-.05em;background:linear-gradient(90deg,#fff,#b9f6ff 45%,#d0b8ff);-webkit-background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:15px;line-height:1.6;max-width:650px;margin:18px auto}
+.grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}.card{background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:28px;padding:20px;backdrop-filter:blur(24px);box-shadow:0 20px 80px rgba(0,0,0,.25)}.label{font-size:12px;color:#aebdca;margin:0 0 9px}.input{width:100%;border:1px solid var(--line);background:rgba(0,0,0,.2);color:white;border-radius:17px;padding:15px;outline:none}.input:focus{border-color:rgba(142,231,255,.55);box-shadow:0 0 0 4px rgba(142,231,255,.07)}
+.platforms{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.platform{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:18px;padding:14px;text-align:left;color:white;cursor:pointer;transition:.2s}.platform.active{border-color:rgba(142,231,255,.7);background:rgba(142,231,255,.1);transform:translateY(-1px)}.logo{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;margin-bottom:8px}.tt{background:#fff;color:#000}.sh{background:#ff5b35;color:#fff}.platform b{font-size:13px}.platform small{display:block;color:var(--muted);margin-top:3px}
+.styles{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px}.style{padding:10px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#dce7ee;font-size:12px;cursor:pointer}.style.active{background:linear-gradient(90deg,rgba(142,231,255,.18),rgba(185,156,255,.18));border-color:rgba(255,255,255,.28)}
+button.main{width:100%;border:0;border-radius:17px;padding:15px;font-weight:800;color:#061018;background:linear-gradient(100deg,#aaf3ff,#c2b0ff);cursor:pointer;box-shadow:0 15px 35px rgba(142,231,255,.14)}button.main:disabled{opacity:.5;cursor:not-allowed}
+.preview{aspect-ratio:9/16;max-height:620px;margin:auto;border-radius:30px;overflow:hidden;position:relative;background:radial-gradient(circle at 30% 20%,#294d60,#0c151c 42%,#05080c);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}.preview:after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.14),transparent 30%,transparent 70%,rgba(255,255,255,.05));pointer-events:none}.phone{position:absolute;inset:14px;border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:15px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7))}.previewIcon{font-size:46px;opacity:.9}.previewText{font-weight:800;font-size:19px}.previewSub{font-size:11px;color:#b8c6d1;margin-top:5px}.badge{position:absolute;top:14px;left:14px;padding:7px 10px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);font-size:10px}
+.status{margin-top:13px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.045);border:1px solid var(--line);font-size:12px;color:#b9c8d2}.bar{height:7px;border-radius:10px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:8px}.fill{height:100%;width:0;background:linear-gradient(90deg,#8ee7ff,#b99cff);transition:width .4s}
+.result{margin-top:14px;display:none}.result a{display:block;text-align:center;text-decoration:none;color:#061018;font-weight:800;background:linear-gradient(90deg,#aaf3ff,#c2b0ff);padding:13px;border-radius:15px}
+.guide{margin-top:18px}.guide h3{margin:0 0 8px;font-size:14px}.guide p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.preview{max-height:none}.top{margin-bottom:20px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="top"><div class="brand"><div class="orb"></div><div><b>GlassAffili AI</b><span>Realistic affiliate video studio</span></div></div><div class="pill">AI CLOUD • 9:16</div></header>
+<section class="hero"><h1>Ubah link produk jadi video affiliate.</h1><p>Masukkan gambar produk, pilih platform dan gaya. GlassAffili menyiapkan prompt UGC realistis dan mengirim proses video ke AI cloud.</p></section>
+<main class="grid">
+<section class="card">
+<p class="label">1. PRODUCT IMAGE URL</p>
+<input id="imageUrl" class="input" placeholder="https://.../gambar-produk.jpg">
+<p class="label" style="margin-top:18px">Nama produk</p>
+<input id="productName" class="input" placeholder="Contoh: Sandal pria casual">
+<p class="label" style="margin-top:18px">Platform</p>
+<div class="platforms">
+<button class="platform active" data-platform="tiktok"><div class="logo tt">♪</div><b>TikTok</b><small>UGC cepat & natural</small></button>
+<button class="platform" data-platform="shopee"><div class="logo sh">S</div><b>Shopee</b><small>Review & conversion</small></button>
+</div>
+<p class="label">Gaya video</p>
+<div class="styles">
+<button class="style active">Viral</button><button class="style">Review Produk</button><button class="style">Promo Murah</button><button class="style">Ternyata sebagus ini</button><button class="style">Clean Aesthetic</button>
+</div>
+<button id="generate" class="main">✨ GENERATE VIDEO AI</button>
+<div class="status" id="status">Siap membuat video. Masukkan URL gambar produk.</div>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<div class="result" id="result"></div>
+<div class="guide"><h3 id="guideTitle">Panduan TikTok</h3><p id="guideText">Gunakan hook kuat di 1–2 detik pertama, tampilkan produk dengan cepat, lalu tutup dengan CTA yang natural.</p></div>
+</section>
+<section class="card">
+<div class="preview"><span class="badge" id="previewBadge">TIKTOK • 9:16</span><div class="phone"><div class="previewIcon">◈</div><div class="previewText" id="previewTitle">Produk kamu, tapi dibuat terasa nyata.</div><div class="previewSub">AI UGC • natural camera • product demo</div></div></div>
+</section>
+</main>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+let platform="tiktok", style="Viral";
+document.querySelectorAll(".platform").forEach(b=>b.onclick=()=>{document.querySelectorAll(".platform").forEach(x=>x.classList.remove("active"));b.classList.add("active");platform=b.dataset.platform;$("#previewBadge").textContent=(platform==="tiktok"?"TIKTOK":"SHOPEE")+" • 9:16";$("#guideTitle").textContent=platform==="tiktok"?"Panduan TikTok":"Panduan Shopee";$("#guideText").textContent=platform==="tiktok"?"Gunakan hook kuat di 1–2 detik pertama, tampilkan produk dengan cepat, lalu tutup dengan CTA yang natural.":"Fokus pada manfaat, detail produk, bukti penggunaan dan CTA yang jelas agar cocok untuk konten affiliate Shopee.";});
+document.querySelectorAll(".style").forEach(b=>b.onclick=()=>{document.querySelectorAll(".style").forEach(x=>x.classList.remove("active"));b.classList.add("active");style=b.textContent;$("#previewTitle").textContent=style==="Viral"?"Produk kamu, tapi dibuat terasa nyata.":style+" yang terasa seperti review creator asli.";});
+$("#generate").onclick=async()=>{
+ const imageUrl=$("#imageUrl").value.trim(), productName=$("#productName").value.trim()||"Produk affiliate";
+ if(!imageUrl){$("#status").textContent="Masukkan URL gambar produk terlebih dahulu.";return;}
+ $("#generate").disabled=true; $("#result").style.display="none"; $("#fill").style.width="10%"; $("#status").textContent="Menganalisis produk…";
+ try{
+   const r=await fetch("/api/jobs",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({imageUrl,productName,style,platform})});
+   const data=await r.json(); if(!r.ok) throw new Error(data.error||"Gagal membuat job");
+   if(data.status==="demo"){ $("#fill").style.width="100%"; $("#status").textContent="Backend tersambung. API AI belum dikonfigurasi di cloud."; $("#generate").disabled=false; return; }
+   let done=false;
+   while(!done){
+     await new Promise(r=>setTimeout(r,3000));
+     const p=await fetch("/api/jobs/"+data.jobId); const j=await p.json();
+     $("#fill").style.width=(j.progress||20)+"%";
+     $("#status").textContent=j.status==="succeeded"?"Video selesai!":j.status==="processing"?"AI sedang membuat video…":"Menyiapkan video…";
+     if(j.status==="succeeded"){done=true;$("#fill").style.width="100%";$("#result").innerHTML=j.output?`<a href="${j.output}" target="_blank" rel="noopener">▶ Buka / Download Video</a>`:"Video selesai, tetapi URL output kosong.";$("#result").style.display="block";}
+     if(j.status==="failed"||j.status==="canceled"){done=true;throw new Error(j.error||"Video gagal dibuat");}
+   }
+ }catch(e){$("#status").textContent="Error: "+e.message;$("#fill").style.width="0%";}finally{$("#generate").disabled=false;}
+};
+</script>
+</body>
+</html>
