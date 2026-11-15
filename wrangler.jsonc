@@ -1,8 +1,12 @@
+
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "glassaffili-backend",
   "main": "src/index.js",
   "compatibility_date": "2026-11-15",
+  "vars": {
+    "VIDEO_MODEL": "wan-video/wan-2.2-i2v-a14b"
+  },
   "assets": {
     "directory": "./public",
     "binding": "ASSETS"
