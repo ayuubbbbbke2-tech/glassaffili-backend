@@ -28,7 +28,9 @@ export default {
     }
 
     if (!env.REPLICATE_API_TOKEN) {
-      return json({ error: "API token belum dipasang" }, 500);
+  return json({
+    error: "Secret REPLICATE_API_TOKEN tidak terbaca oleh Worker"
+  }, 500);
     }
 
     // Membuat video
